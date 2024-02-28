@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import logoImage from './images/download.png';
 
@@ -99,13 +101,15 @@ export default function App() {
           Open Chat
         </button>
       ) : (
-        <div className="flex flex-col h-[98%] w-[98%] sm:h-[600px] sm:w-[800px]">
+        <div className="flex flex-col h-[90vh] w-[98%] sm:w-[800px] overflow-hidden">
           <div className="flex items-center justify-between bg-blue-500 p-2 rounded-lg">
             <Avatar alt="Your Logo" src={logoImage} style={{ margin: '0 8px' }} />
-            <h1 className="flex-grow text-center">CUSTOM UI</h1>
-            <h1 className="cursor-pointer" onClick={() => setShowChat(false)}>X</h1>
+            <h1 className="flex-grow text-center">Botpress Chatbot</h1>
+            <IconButton aria-label="close" onClick={() => setShowChat(false)}>
+              <CloseIcon />
+            </IconButton>
           </div>
-          <Box id="messageContainer" ref={messageContainerRef} sx={{ display: 'flex', flexDirection: 'column', mt: 2 }}>
+          <Box id="messageContainer" ref={messageContainerRef} sx={{ display: 'flex', flexDirection: 'column', mt: 2, overflowY: 'auto', mb: 0, height: 'calc(100% - 120px)' }}>
             <Box sx={{ flexGrow: 1, overflowY: 'auto', mb: 2, border: '1px solid #ccc', borderRadius: '16px', p: 2, boxShadow: 3, height: '500px', display: 'flex', flexDirection: 'column' }}>
               {messages.map((message, index) => (
                 <Typography
